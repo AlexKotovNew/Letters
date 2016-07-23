@@ -9,8 +9,7 @@ public class Letters {
         //readFile();
         //processFile();
         //printResult();
-
-
+        //some comment
 
 
         BufferedReader reader = new BufferedReader(new FileReader("D:\\KoT\\letters.txt"));
