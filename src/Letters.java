@@ -3,45 +3,48 @@ import java.util.*;
 
 public class Letters {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
 
-        //readFile();
-        //processFile();
-        //printResult();
-        //some comment
+        List<String> strings = readStringsFromFile();
+        Map<Character, Integer> result = process(strings);
+        printResult(result);
 
+    }
 
-        BufferedReader reader = new BufferedReader(new FileReader("D:\\KoT\\letters.txt"));
+    private static Map<Character, Integer> process(List<String> strings) {
+        Map<Character, Integer> result = new HashMap<>();
+        char[] chars;
+
+        for (String s : strings) {
+            chars = s.toCharArray();
+            for (char letters : chars) {
+                if (result.containsKey(letters))
+                    result.put(letters, result.get(letters) + 1);
+                else
+                    result.put(letters, 1);
+            }
+        }
+
+        return result;
+    }
+
+    private static List<String> readStringsFromFile() throws Exception{
+        BufferedReader reader = new BufferedReader(new FileReader("SomeText"));
         ArrayList<String> list = new ArrayList<>();
-        Map<Character, Integer> map = new HashMap<>();
-        char[] words = new char[0];
 
         while (reader.ready()) {
             list.add(reader.readLine());
         }
 
+        return list;
+    }
 
-        for (String string : list) {
-            words = string.toCharArray();
-            Arrays.sort(words);
-            for (char letters : words) {
-                if (map.containsKey(letters))
-                    map.put(letters, map.get(letters) + 1);
-                else
-                    map.put(letters, 1);
-            }
-        }
+    private static void printResult(Map<Character, Integer> map) throws Exception{
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KoT\\letters.txt"))) {
             for (Map.Entry<Character, Integer> entry : map.entrySet()) {
                 System.out.println(entry.getKey() + " - " + entry.getValue());
-                writer.write(entry.getKey() + " - " + entry.getValue());
-                writer.newLine();
             }
-        }
-
-
 
     }
 }
