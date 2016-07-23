@@ -5,6 +5,14 @@ public class Letters {
 
     public static void main(String[] args) throws IOException {
 
+
+        //readFile();
+        //processFile();
+        //printResult();
+
+
+
+
         BufferedReader reader = new BufferedReader(new FileReader("D:\\KoT\\letters.txt"));
         ArrayList<String> list = new ArrayList<>();
         Map<Character, Integer> map = new HashMap<>();
@@ -33,5 +41,8 @@ public class Letters {
                 writer.newLine();
             }
         }
+
+
+
     }
 }
